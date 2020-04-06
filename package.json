@@ -1,6 +1,6 @@
 {
   "name": "ila",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -29,5 +29,13 @@
     "eslint-plugin-react": "^7.19.0",
     "jest": "^25.2.7",
     "prettier": "^2.0.4"
-  }
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "cli",
+    "boilerplate",
+    "testing",
+    "cicd"
+  ]
 }

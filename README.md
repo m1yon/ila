@@ -6,19 +6,19 @@ ILA (Initialize Lambda Application) is a CLI tool used to initialize a fresh Nod
 
 Using ILA is super easy.
 
-1.  **Install ILA globally.**
+1. **Install ILA globally.**
 
-```shell
-npm i -g ila
-```
+   ```shell
+   npm i -g ila
+   ```
 
-2.  **cd into a Lambda application and run.**
+2. **cd into the root of your Lambda application and run:**
 
-```shell
-ila
-```
+   ```shell
+   ila
+   ```
 
-3.  **Let ILA do it's thing.**
+3. **Let ILA do it's thing.**
 
 # What ILA does
 
