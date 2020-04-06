@@ -2,6 +2,9 @@
 /* eslint-disable no-unused-expressions */
 const report = require('yurnalist');
 const setupLambdaLocal = require('./utils/setupLambdaLocal');
+const setupAWSSDK = require('./utils/setupAWSSDK');
+const setupJest = require('./utils/setupJest');
+const setupEslintPrettier = require('./utils/setupEslintPrettier');
 
 require('yargs').command(
   '$0',
@@ -9,6 +12,14 @@ require('yargs').command(
   () => {},
   async () => {
     report.info('Initialization of Lambda application started');
-    await setupLambdaLocal();
+    try {
+      await setupLambdaLocal();
+      await setupAWSSDK();
+      await setupJest();
+      await setupEslintPrettier();
+    } catch (e) {
+      report.error(e);
+      process.exit(0);
+    }
   },
 ).argv;
