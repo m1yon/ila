@@ -12,6 +12,7 @@ const configTemplate = require('./utils/configTemplate');
 const createEvent = require('./utils/createEvent');
 const createIndex = require('./utils/createIndex');
 const configGitIgnore = require('./utils/configGitIgnore');
+const createReadMe = require('./utils/createReadMe');
 
 require('yargs').command(
   '$0',
@@ -31,6 +32,7 @@ require('yargs').command(
       await createEvent();
       await createIndex();
       await configGitIgnore();
+      await createReadMe();
     } catch (e) {
       report.error(e);
       process.exit(0);
