@@ -8,6 +8,7 @@ module.exports = async () => {
   // add overrides
   const gitIgnoreConfigured = `node_modules
 coverage
+.eslintcache
 `;
 
   // write new file
