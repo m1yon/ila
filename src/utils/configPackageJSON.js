@@ -25,6 +25,9 @@ module.exports = async () => {
         'pre-push': 'npm run coverage',
       },
     },
+    'lint-staged': {
+      '*.js': 'eslint --cache --fix',
+    },
   };
 
   // write new file
