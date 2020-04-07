@@ -8,7 +8,7 @@ module.exports = async () => {
   spinner.tick('Installing husky');
 
   // install jest package
-  await exec('npm -D i husky');
+  await exec('npm -D i husky lint-staged');
 
   spinner.end();
   report.success('husky installed');

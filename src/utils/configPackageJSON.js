@@ -17,10 +17,11 @@ module.exports = async () => {
       start: 'lambda-local -l ./src/index.js -h handler -e ./event.js',
       test: 'jest --watchAll',
       coverage: 'jest --coverage',
+      'test:ci': 'jest --watchAll=false',
     },
     husky: {
       hooks: {
-        'pre-commit': 'npm test',
+        'pre-commit': 'npm test:ci && lint-staged"',
         'pre-push': 'npm run coverage',
       },
     },
