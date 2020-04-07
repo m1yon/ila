@@ -11,7 +11,7 @@ module.exports = async () => {
 
 aws.config.update({ region: 'us-east-1' });
 
-exports.handler = (event) => {
+exports.handler = async (event) => {
   return event;
 };
 `;
