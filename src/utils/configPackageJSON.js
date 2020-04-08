@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Configuring package.json');
 
   // get current package.json
@@ -35,5 +36,5 @@ module.exports = async () => {
   await fs.writeFile('package.json', JSON.stringify(packageJSONConfigured));
 
   spinner.end();
-  report.success('package.json configured');
+  reporter.success('package.json configured');
 };

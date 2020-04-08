@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Configuring template.yml');
 
   // get current template.yml
@@ -10,12 +11,13 @@ module.exports = async () => {
 
   // add overrides
   const templateConfigured = template
-    .replace('src/handlers/helloFromLambda', 'src/index.handler')
+    .replace('helloFromLambdaFunction', 'function')
+    .replace('src/handlers/hello-from-lambda.helloFromLambdaHandler', 'src/index.handler')
     .replace('helloFromLambda', 'function');
 
   // write new file
   await fs.writeFile('template.yml', templateConfigured);
 
   spinner.end();
-  report.success('template.yml configured');
+  reporter.success('template.yml configured');
 };

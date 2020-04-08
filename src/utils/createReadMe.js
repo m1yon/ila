@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Creating README.md');
 
   // add overrides
@@ -18,5 +19,5 @@ module.exports = async () => {
   await fs.writeFile('README.md', readMe);
 
   spinner.end();
-  report.success('README.md created');
+  reporter.success('README.md created');
 };

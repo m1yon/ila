@@ -1,10 +1,11 @@
-const report = require('yurnalist');
 const util = require('util');
 const fs = require('fs').promises;
 const exec = util.promisify(require('child_process').exec);
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Configuring eslint/prettier');
 
   // install eslint/prettier packages
@@ -65,5 +66,5 @@ module.exports = async () => {
   await exec('npm run prettier');
 
   spinner.end();
-  report.success('eslint/prettier configured');
+  reporter.success('eslint/prettier configured');
 };

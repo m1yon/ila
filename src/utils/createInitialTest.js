@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Creating initial test');
 
   const test = `const { handler } = require('../src/index');
@@ -16,5 +17,5 @@ it('returns the correct value', async () => {
   await fs.writeFile('__tests__/index.test.js', test);
 
   spinner.end();
-  report.success('Initial test created');
+  reporter.success('Initial test created');
 };

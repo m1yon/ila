@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-unused-expressions */
-const report = require('yurnalist');
+const emoji = require('node-emoji');
 const setupLambdaLocal = require('./utils/setupLambdaLocal');
 const setupAWSSDK = require('./utils/setupAWSSDK');
 const setupJest = require('./utils/setupJest');
@@ -16,12 +16,43 @@ const createReadMe = require('./utils/createReadMe');
 const createInitialTest = require('./utils/createInitialTest');
 const prettifyProject = require('./utils/prettifyProject');
 
+const reporter = require('./utils/reporter');
+
 require('yargs').command(
   '$0',
   'Initialize a Lambda Application with best practices',
   () => {},
   async () => {
-    report.info('Initialization of Lambda application started');
+    reporter.info(
+      `${emoji.get('wave')} Hi I'm ILA, I heard you need help initializing your Node Lambda.`,
+    );
+
+    const result = await reporter.select(
+      `${emoji.get('thinking_face')} is this a fresh project or an existing project?`,
+      'Answer (1 or 2)',
+      [
+        {
+          name: 'Fresh project',
+          value: 'fresh',
+        },
+        {
+          name: 'Existing project',
+          value: 'existing',
+        },
+      ],
+    );
+
+    if (result === 'existing') {
+      reporter.info(
+        `${emoji.get(
+          'disappointed',
+        )} You should only ask for my help with fresh projects, I might accidentally delete your work.`,
+      );
+      return;
+    }
+
+    reporter.info(`${emoji.get('blush')} Cool, let's get started!`);
+
     try {
       await setupLambdaLocal();
       await setupAWSSDK();
@@ -38,8 +69,13 @@ require('yargs').command(
       await configPackageJSON();
       await prettifyProject();
     } catch (e) {
-      report.error(e);
+      reporter.error(e);
       process.exit(0);
     }
+
+    reporter.info(
+      `${emoji.get('blush')} You're all set to go, check out the README for a list of commands!`,
+    );
+    reporter.warn(`Make sure you edit/delete your permissions boundary inside the console.`);
   },
 ).argv;

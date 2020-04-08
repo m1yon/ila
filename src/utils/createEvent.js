@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Creating event.js');
 
   // add overrides
@@ -15,5 +16,5 @@ module.exports = async () => {
   await fs.writeFile('event.js', eventJSONConfigured);
 
   spinner.end();
-  report.success('event.js created');
+  reporter.success('event.js created');
 };

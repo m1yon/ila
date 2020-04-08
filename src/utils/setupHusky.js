@@ -1,15 +1,15 @@
-const report = require('yurnalist');
 const util = require('util');
-
 const exec = util.promisify(require('child_process').exec);
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Installing husky');
 
   // install jest package
   await exec('npm -D i husky lint-staged');
 
   spinner.end();
-  report.success('husky installed');
+  reporter.success('husky installed');
 };

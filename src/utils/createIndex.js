@@ -1,10 +1,11 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Creating index.js');
 
   const index = `const aws = require('aws-sdk');
@@ -24,5 +25,5 @@ exports.handler = async (event) => {
   await exec('rm -rf ./__tests__/*');
 
   spinner.end();
-  report.success('index.js created');
+  reporter.success('index.js created');
 };

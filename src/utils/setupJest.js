@@ -1,11 +1,11 @@
-const report = require('yurnalist');
 const util = require('util');
 const fs = require('fs').promises;
-
 const exec = util.promisify(require('child_process').exec);
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Installing jest');
 
   // install jest package
@@ -27,5 +27,5 @@ module.exports = async () => {
 `),
   );
   spinner.end();
-  report.success('jest installed');
+  reporter.success('jest installed');
 };

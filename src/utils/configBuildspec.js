@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Configuring buildspec.yml');
 
   // get current buildspec.yml
@@ -15,5 +16,5 @@ module.exports = async () => {
   await fs.writeFile('buildspec.yml', buildspecConfigured);
 
   spinner.end();
-  report.success('buildspec.yml configured');
+  reporter.success('buildspec.yml configured');
 };

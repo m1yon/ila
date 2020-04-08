@@ -1,8 +1,9 @@
-const report = require('yurnalist');
 const fs = require('fs').promises;
 
+const reporter = require('./reporter');
+
 module.exports = async () => {
-  const spinner = report.activity();
+  const spinner = reporter.activity();
   spinner.tick('Configuring .gitignore');
 
   // add overrides
@@ -15,5 +16,5 @@ coverage
   await fs.writeFile('.gitignore', gitIgnoreConfigured);
 
   spinner.end();
-  report.success('.gitignore configured');
+  reporter.success('.gitignore configured');
 };
