@@ -62,9 +62,6 @@ module.exports = async () => {
     `),
   );
 
-  // install eslint/prettier packages
-  await exec('npm run prettier');
-
   spinner.end();
   reporter.success('eslint/prettier configured');
 };
