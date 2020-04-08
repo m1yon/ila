@@ -5,7 +5,7 @@ const exec = util.promisify(require('child_process').exec);
 
 module.exports = async () => {
   const spinner = report.activity();
-  spinner.tick('Configuring Airbnb eslint/prettier');
+  spinner.tick('Configuring eslint/prettier');
 
   // install eslint/prettier packages
   await exec(
@@ -61,6 +61,9 @@ module.exports = async () => {
     `),
   );
 
+  // install eslint/prettier packages
+  await exec('npm run prettier');
+
   spinner.end();
-  report.success('Airbnb eslint/prettier configured');
+  report.success('eslint/prettier configured');
 };

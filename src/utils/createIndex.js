@@ -5,7 +5,7 @@ const exec = util.promisify(require('child_process').exec);
 
 module.exports = async () => {
   const spinner = report.activity();
-  spinner.tick('Creating src/index.js');
+  spinner.tick('Creating index.js');
 
   const index = `const aws = require('aws-sdk');
 
@@ -24,5 +24,5 @@ exports.handler = async (event) => {
   await exec('rm -rf ./__tests__/*');
 
   spinner.end();
-  report.success('src/event.js created');
+  report.success('index.js created');
 };

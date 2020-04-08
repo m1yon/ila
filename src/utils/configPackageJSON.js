@@ -18,10 +18,11 @@ module.exports = async () => {
       test: 'jest --watchAll',
       coverage: 'jest --coverage',
       'test:ci': 'jest --watchAll=false',
+      prettier: 'prettier --write .',
     },
     husky: {
       hooks: {
-        'pre-commit': 'npm test:ci && lint-staged"',
+        'pre-commit': 'npm run test:ci && lint-staged',
         'pre-push': 'npm run coverage',
       },
     },

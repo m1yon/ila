@@ -13,6 +13,8 @@ const createEvent = require('./utils/createEvent');
 const createIndex = require('./utils/createIndex');
 const configGitIgnore = require('./utils/configGitIgnore');
 const createReadMe = require('./utils/createReadMe');
+const createInitialTest = require('./utils/createInitialTest');
+const prettifyProject = require('./utils/prettifyProject');
 
 require('yargs').command(
   '$0',
@@ -23,16 +25,18 @@ require('yargs').command(
     try {
       await setupLambdaLocal();
       await setupAWSSDK();
-      await setupJest();
-      await setupEslintPrettier();
-      await setupHusky();
-      await configPackageJSON();
       await configBuildspec();
       await configTemplate();
-      await createEvent();
       await createIndex();
+      await createEvent();
+      await setupJest();
+      await createInitialTest();
+      await setupHusky();
       await configGitIgnore();
       await createReadMe();
+      await setupEslintPrettier();
+      await configPackageJSON();
+      await prettifyProject();
     } catch (e) {
       report.error(e);
       process.exit(0);
