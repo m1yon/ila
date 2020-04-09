@@ -10,7 +10,9 @@ module.exports = async () => {
 const event = require('../events/jestEvent');
 
 it('returns the correct value', async () => {
-  expect(await handler(event)).toStrictEqual({ test: 'event' });
+  const result = await handler(event);
+  
+  expect(result).toStrictEqual({ test: 'event' });
 })
 `;
 
