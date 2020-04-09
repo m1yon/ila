@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable no-unused-expressions */
 const emoji = require('node-emoji');
+const checkPrerequisites = require('./utils/checkPrerequisites');
 const setupLambdaLocal = require('./utils/setupLambdaLocal');
 const setupAWSSDK = require('./utils/setupAWSSDK');
 const setupJest = require('./utils/setupJest');
@@ -23,6 +24,8 @@ require('yargs').command(
   'Initialize a Lambda Application with best practices',
   () => {},
   async () => {
+    await checkPrerequisites();
+
     reporter.info(
       `${emoji.get('wave')} Hi I'm ILA, I heard you need help initializing your Node Lambda.`,
     );

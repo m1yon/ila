@@ -1,6 +1,6 @@
 {
   "name": "ila",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "check-node-version": "^4.0.3",
     "lambda-local": "^1.7.1",
     "node-emoji": "^1.10.0",
     "yargs": "^15.3.1",
