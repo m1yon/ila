@@ -15,6 +15,7 @@ module.exports = async () => {
   await fs.writeFile(
     'jest.config.js',
     Buffer.from(`module.exports = {
+  coveragePathIgnorePatterns: ['<rootDir>/events/'],
   coverageThreshold: {
     global: {
       branches: 90,

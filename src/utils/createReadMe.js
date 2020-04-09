@@ -9,7 +9,7 @@ module.exports = async () => {
   // add overrides
   const readMe = `# Created with ILA
 ## Scripts
-- **start** - runs the Lambda using event.js as input
+- **start** - runs the Lambda using events/testEvent.js as input
 - **test** - runs the Jest test suite in watch mode
 - **coverage** - generate coverage report via Jest
 - **test:ci** - runs the Jest test suite

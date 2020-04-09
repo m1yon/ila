@@ -9,7 +9,7 @@ const setupHusky = require('./utils/setupHusky');
 const configPackageJSON = require('./utils/configPackageJSON');
 const configBuildspec = require('./utils/configBuildspec');
 const configTemplate = require('./utils/configTemplate');
-const createEvent = require('./utils/createEvent');
+const createEvents = require('./utils/createEvents');
 const createIndex = require('./utils/createIndex');
 const configGitIgnore = require('./utils/configGitIgnore');
 const createReadMe = require('./utils/createReadMe');
@@ -59,7 +59,7 @@ require('yargs').command(
       await configBuildspec();
       await configTemplate();
       await createIndex();
-      await createEvent();
+      await createEvents();
       await setupJest();
       await createInitialTest();
       await setupHusky();

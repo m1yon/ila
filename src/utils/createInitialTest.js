@@ -7,9 +7,10 @@ module.exports = async () => {
   spinner.tick('Creating initial test');
 
   const test = `const { handler } = require('../src/index');
+const event = require('../events/jestEvent');
 
 it('returns the correct value', async () => {
-  expect(await handler({ my: 'test' })).toMatchObject({ my: 'test' });
+  expect(await handler(event)).toStrictEqual({ test: 'event' });
 })
 `;
 

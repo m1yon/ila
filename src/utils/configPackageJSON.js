@@ -15,7 +15,7 @@ module.exports = async () => {
   const packageJSONConfigured = {
     ...packageJSON,
     scripts: {
-      start: 'lambda-local -l ./src/index.js -h handler -e ./event.js',
+      start: 'lambda-local -l ./src/index.js -h handler -e ./events/testEvent.js',
       test: 'jest --watchAll',
       coverage: 'jest --coverage',
       'test:ci': 'jest --watchAll=false',
