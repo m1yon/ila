@@ -54,13 +54,17 @@ require('yargs').command(
       return;
     }
 
+    const author = await reporter.question(
+      `${emoji.get('thinking_face')} What's your name (for tagging purposes)?`,
+    );
+
     reporter.info(`${emoji.get('blush')} Cool, let's get started!`);
 
     try {
       await setupLambdaLocal();
       await setupAWSSDK();
       await configBuildspec();
-      await configTemplate();
+      await configTemplate(author);
       await createIndex();
       await createEvents();
       await setupJest();
@@ -69,7 +73,7 @@ require('yargs').command(
       await configGitIgnore();
       await createReadMe();
       await setupEslintPrettier();
-      await configPackageJSON();
+      await configPackageJSON(author);
       await prettifyProject();
     } catch (e) {
       reporter.error(e);

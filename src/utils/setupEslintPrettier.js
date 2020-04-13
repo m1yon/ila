@@ -24,6 +24,14 @@ module.exports = async () => {
   `),
   );
 
+  // prettierignore config
+  await fs.writeFile(
+    '.prettierignore',
+    Buffer.from(`node_modules
+coverage
+  `),
+  );
+
   // eslint config
   await fs.writeFile(
     '.eslintrc.js',

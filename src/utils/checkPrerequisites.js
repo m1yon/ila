@@ -24,9 +24,16 @@ module.exports = async () => {
     process.exit(1);
   });
 
-  await fs.open('package.json', 'r').catch(() => {
-    reporter.error('package.json not found');
-    reporter.error(`Make sure you're in the root of a Lambda Application`);
-    process.exit(1);
-  });
+  await fs
+    .open('package.json', 'r')
+
+    // close and continue if file exists
+    .then((file) => file.close())
+
+    // if file doesn't exist, throw an error
+    .catch(() => {
+      reporter.error('package.json not found');
+      reporter.error(`Make sure you're in the root of a Lambda Application`);
+      process.exit(1);
+    });
 };

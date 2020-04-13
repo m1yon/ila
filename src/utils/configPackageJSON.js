@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 
 const reporter = require('./reporter');
 
-module.exports = async () => {
+module.exports = async (author) => {
   const spinner = reporter.activity();
   spinner.tick('Configuring package.json');
 
@@ -14,6 +14,7 @@ module.exports = async () => {
   // add overrides
   const packageJSONConfigured = {
     ...packageJSON,
+    author,
     scripts: {
       start: 'lambda-local -l ./src/index.js -h handler -e ./events/testEvent.js',
       test: 'jest --watchAll',
