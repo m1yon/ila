@@ -12,7 +12,6 @@ npx ila
 
 # What ILA does
 
-- Installs the aws-sdk
 - Installs and configure Husky (default requirement is 90% test coverage)
 - Installs and configures eslint/prettier with Airbnb standards
 - Installs lamda-local for local development

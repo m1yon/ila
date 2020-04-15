@@ -1,12 +1,16 @@
 {
   "name": "ila",
-  "version": "1.0.19",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js hello",
     "test": "jest",
     "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m1yon/ila"
   },
   "author": "",
   "license": "ISC",

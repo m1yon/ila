@@ -3,7 +3,6 @@
 const emoji = require('node-emoji');
 const checkPrerequisites = require('./utils/checkPrerequisites');
 const setupLambdaLocal = require('./utils/setupLambdaLocal');
-const setupAWSSDK = require('./utils/setupAWSSDK');
 const setupJest = require('./utils/setupJest');
 const setupEslintPrettier = require('./utils/setupEslintPrettier');
 const setupHusky = require('./utils/setupHusky');
@@ -62,7 +61,6 @@ require('yargs').command(
 
     try {
       await setupLambdaLocal();
-      await setupAWSSDK();
       await configBuildspec();
       await configTemplate(author);
       await createIndex();
