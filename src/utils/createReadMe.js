@@ -18,7 +18,7 @@ module.exports = async () => {
 
 ## Permissions Boundary and Roles
 
-By default, AWS will give your Lambda function a default role and slap a permissions boundary over the entire permissions Lambda Application. **A Lambda Application initialized with ILA should only have 1 Lambda in it and that's it, no other resources**. Therefore it's recommended you just **remove the permissions boundary** and put any permissions you want the Lambda Application to have on the Lambda function's role.
+By default, AWS will give your Lambda function a default role and slap a permissions boundary over the entire Lambda Application, limiting the permissions of everything inside. **A Lambda Application initialized with ILA should only have 1 Lambda in it and that's it, no other resources**. Therefore it's recommended you just **remove the permissions boundary** and put any permissions you want the Lambda Application to have directly on the Lambda function's role.
 `;
 
   // write new file
