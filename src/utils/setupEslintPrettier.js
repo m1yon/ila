@@ -48,6 +48,9 @@ coverage
     "jest": true,
     "node": true
   },
+  "settings": {
+    "import/core-modules": ["aws-sdk"]
+  },
   "rules": {
     "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],

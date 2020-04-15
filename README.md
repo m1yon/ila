@@ -1,6 +1,6 @@
 # **ILA**
 
-ILA (Initialize Lambda Application) is a CLI tool used to initialize a fresh NodeJS Lambda Application with best practices.
+ILA (Initialize Lambda Application) is a CLI tool used to initialize a fresh NodeJS Lambda Application with (my perceived) best practices. This tool is fairly opinionated, as it's meant to match the use case my team and I need and that's it.
 
 # How to Use
 
