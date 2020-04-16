@@ -16,7 +16,7 @@ module.exports = async (author) => {
     ...packageJSON,
     author,
     scripts: {
-      start: 'lambda-local -l ./src/index.js -h handler -e ./events/testEvent.js',
+      start: 'lambda-local -l ./src/index.js -h handler -e ./events/testEvent.js -t 60',
       test: 'jest --watchAll',
       coverage: 'jest --coverage',
       'test:ci': 'jest --watchAll=false',
