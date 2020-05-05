@@ -4,13 +4,17 @@ const exec = util.promisify(require('child_process').exec);
 
 const reporter = require('./reporter');
 
-module.exports = async () => {
+module.exports = async ({ ts } = {}) => {
   const spinner = reporter.activity();
   spinner.tick('Configuring eslint/prettier');
 
   // install eslint/prettier packages
   await exec(
-    'npm -D i babel-eslint eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react prettier',
+    `npm -D i babel-eslint eslint ${
+      ts
+        ? 'eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin'
+        : 'eslint-config-airbnb'
+    } eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react prettier`,
   );
 
   // prettier config

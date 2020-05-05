@@ -4,17 +4,18 @@ const exec = util.promisify(require('child_process').exec);
 
 const reporter = require('./reporter');
 
-module.exports = async () => {
+module.exports = async ({ ts } = {}) => {
   const spinner = reporter.activity();
   spinner.tick('Installing jest');
 
   // install jest package
-  await exec('npm -D i jest');
+  await exec(ts ? 'npm i -D jest@25.5.4 ts-jest' : 'npm i -D jest@latest');
 
   // prettier config
   await fs.writeFile(
     'jest.config.js',
     Buffer.from(`module.exports = {
+  testEnvironment: 'node',
   coveragePathIgnorePatterns: ['<rootDir>/events/'],
   coverageThreshold: {
     global: {
@@ -24,6 +25,14 @@ module.exports = async () => {
       statements: 90,
     },
   },
+  ${
+    ts
+      ? `preset: 'ts-jest',
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },`
+      : ''
+  }
 };
 `),
   );

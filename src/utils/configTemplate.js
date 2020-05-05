@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 
 const reporter = require('./reporter');
 
-module.exports = async (author) => {
+module.exports = async ({ author, ts } = {}) => {
   const spinner = reporter.activity();
   spinner.tick('Configuring template.yml');
 
@@ -12,7 +12,7 @@ module.exports = async (author) => {
   // add overrides
   const templateConfigured = `${template
     .replace('helloFromLambdaFunction', 'function')
-    .replace('src/handlers/hello-from-lambda.helloFromLambdaHandler', 'src/index.handler')
+    .replace('src/handlers/hello-from-lambda.helloFromLambdaHandler', 'lib/index.handler')
     .replace('helloFromLambda', 'function')}      Tags:
         Author: ${author}
 `;

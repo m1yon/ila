@@ -2,12 +2,12 @@ const fs = require('fs').promises;
 
 const reporter = require('./reporter');
 
-module.exports = async () => {
+module.exports = async ({ ts } = {}) => {
   const spinner = reporter.activity();
   spinner.tick('Creating initial test');
 
-  const test = `const { handler } = require('../src/index');
-const event = require('../events/jestEvent');
+  const test = `import { handler } from '../src/index';
+import event from '../events/jestEvent';
 
 it('returns the correct value', async () => {
   const result = await handler(event);
@@ -17,7 +17,7 @@ it('returns the correct value', async () => {
 `;
 
   // write new file
-  await fs.writeFile('__tests__/index.test.js', test);
+  await fs.writeFile(`__tests__/index.test.${ts ? 'ts' : 'js'}`, test);
 
   spinner.end();
   reporter.success('Initial test created');

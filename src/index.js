@@ -2,19 +2,8 @@
 /* eslint-disable no-unused-expressions */
 const emoji = require('node-emoji');
 const checkPrerequisites = require('./utils/checkPrerequisites');
-const setupLambdaLocal = require('./utils/setupLambdaLocal');
-const setupJest = require('./utils/setupJest');
-const setupEslintPrettier = require('./utils/setupEslintPrettier');
-const setupHusky = require('./utils/setupHusky');
-const configPackageJSON = require('./utils/configPackageJSON');
-const configBuildspec = require('./utils/configBuildspec');
-const configTemplate = require('./utils/configTemplate');
-const createEvents = require('./utils/createEvents');
-const createIndex = require('./utils/createIndex');
-const configGitIgnore = require('./utils/configGitIgnore');
-const createReadMe = require('./utils/createReadMe');
-const createInitialTest = require('./utils/createInitialTest');
-const prettifyProject = require('./utils/prettifyProject');
+const initializeTypeScript = require('./utils/initializeTypeScript');
+const initializeJavaScript = require('./utils/initializeJavaScript');
 
 const reporter = require('./utils/reporter');
 
@@ -29,8 +18,8 @@ require('yargs').command(
       `${emoji.get('wave')} Hi I'm ILA, I heard you need help initializing your Node Lambda.`,
     );
 
-    const result = await reporter.select(
-      `${emoji.get('thinking_face')} is this a fresh project or an existing project?`,
+    const projectResult = await reporter.select(
+      `${emoji.get('thinking_face')} Is this a fresh project or an existing project?`,
       'Answer (1 or 2)',
       [
         {
@@ -44,7 +33,7 @@ require('yargs').command(
       ],
     );
 
-    if (result === 'existing') {
+    if (projectResult === 'existing') {
       reporter.info(
         `${emoji.get(
           'disappointed',
@@ -53,30 +42,29 @@ require('yargs').command(
       return;
     }
 
+    const templateResult = await reporter.select(
+      `${emoji.get('thinking_face')} Which template would you like to use?`,
+      'Answer (1 or 2)',
+      [
+        {
+          name: 'TypeScript',
+          value: 'ts',
+        },
+        {
+          name: 'JavaScript',
+          value: 'js',
+        },
+      ],
+    );
+
     const author = await reporter.question(
       `${emoji.get('thinking_face')} What's your name (for tagging purposes)?`,
     );
 
     reporter.info(`${emoji.get('blush')} Cool, let's get started!`);
 
-    try {
-      await setupLambdaLocal();
-      await configBuildspec();
-      await configTemplate(author);
-      await createIndex();
-      await createEvents();
-      await setupJest();
-      await createInitialTest();
-      await setupHusky();
-      await configGitIgnore();
-      await createReadMe();
-      await setupEslintPrettier();
-      await configPackageJSON(author);
-      await prettifyProject();
-    } catch (e) {
-      reporter.error(e);
-      process.exit(0);
-    }
+    if (templateResult === 'ts') await initializeTypeScript(author);
+    if (templateResult === 'js') await initializeJavaScript(author);
 
     reporter.info(
       `${emoji.get('blush')} You're all set to go, check out the README for a list of commands!`,

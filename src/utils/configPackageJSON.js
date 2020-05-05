@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 
 const reporter = require('./reporter');
 
-module.exports = async (author) => {
+module.exports = async ({ author, ts } = {}) => {
   const spinner = reporter.activity();
   spinner.tick('Configuring package.json');
 
@@ -16,10 +16,12 @@ module.exports = async (author) => {
     ...packageJSON,
     author,
     scripts: {
-      start: 'lambda-local -l ./src/index.js -h handler -e ./events/testEvent.js -t 60',
-      test: 'jest --watchAll',
-      coverage: 'jest --coverage',
-      'test:ci': 'jest --watchAll=false',
+      start: `npm run build && lambda-local -l ./lib/index.js -h handler -e ./events/testEvent.js -t 60`,
+      build: `babel ./src --out-dir lib --extensions '.js,.ts,.tsx'`,
+      'check-types': 'npx tsc --noEmit',
+      test: `${ts ? 'npm run check-types && ' : ''}jest --watchAll`,
+      coverage: `${ts ? 'npm run check-types && ' : ''}jest --coverage`,
+      'test:ci': `${ts ? 'npm run check-types && ' : ''}jest --watchAll=false`,
       prettier: 'prettier --write .',
     },
     husky: {

@@ -10,7 +10,9 @@ module.exports = async () => {
   const buildspec = await fs.readFile('./buildspec.yml').then((data) => data.toString());
 
   // add overrides
-  const buildspecConfigured = buildspec.replace('npm run test', 'npm run coverage');
+  const buildspecConfigured = buildspec
+    .replace('npm run test', 'npm run coverage')
+    .replace('rm -rf ./__tests__', 'npm run build');
 
   // write new file
   await fs.writeFile('buildspec.yml', buildspecConfigured);
