@@ -12,6 +12,8 @@ npx ila
 
 # What ILA does
 
+- Optionally adds TypeScript support
+- Adds NEXTJS and ES modules support via Babel
 - Installs and configure Husky (default requirement is 90% test coverage)
 - Installs and configures eslint/prettier with Airbnb standards
 - Installs lamda-local for local development

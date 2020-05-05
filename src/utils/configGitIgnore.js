@@ -10,6 +10,8 @@ module.exports = async () => {
   const gitIgnoreConfigured = `node_modules
 coverage
 .eslintcache
+lib
+dist
 `;
 
   // write new file

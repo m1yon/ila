@@ -9,11 +9,11 @@ const setupBabel = async ({ ts } = {}) => {
   spinner.tick('Installing and configuring babel');
 
   // install regenerator runtime for async/await
-  await exec('npm i regenerator-runtime');
+  await exec('npm i regenerator-runtime --save-prod');
 
   // install babel packages
   await exec(
-    `npm i -D @babel/cli @babel/core @babel/preset-env regenerator-runtime ${
+    `npm i -D @babel/cli @babel/core @babel/preset-env ${
       ts
         ? '@babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/preset-typescript babel-jest'
         : ''
@@ -25,7 +25,16 @@ const setupBabel = async ({ ts } = {}) => {
     '.babelrc.json',
     `
   {
-    "presets": ["@babel/env"${ts ? ', "@babel/preset-typescript"' : ''}],
+    "presets": [[
+      "@babel/env",
+      {
+        "targets": {
+          "esmodules": false,
+          "node": "10"
+        }
+      }
+    ]${ts ? ', "@babel/preset-typescript"' : ''}
+  ],
     ${
       ts
         ? '"plugins": ["@babel/proposal-class-properties", "@babel/proposal-object-rest-spread"]'

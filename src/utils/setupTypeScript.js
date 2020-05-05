@@ -15,16 +15,16 @@ const setupTypeScript = async () => {
   await fs.writeFile(
     'tsconfig.json',
     `{
-    "compilerOptions": {
-      "target": "ES2017",
-      "module": "commonjs",
-      "allowJs": false,
-      "strict": true,
-      "outDir": "dist",
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true
-    }
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "allowJs": false,
+    "strict": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   }
+}
 `,
   );
 

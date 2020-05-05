@@ -12,7 +12,7 @@ import event from '../events/jestEvent';
 it('returns the correct value', async () => {
   const result = await handler(event);
   
-  expect(result).toStrictEqual({ test: 'event' });
+  expect(result).toBe(4);
 })
 `;
 

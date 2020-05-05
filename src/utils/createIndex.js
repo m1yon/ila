@@ -11,15 +11,13 @@ module.exports = async ({ ts } = {}) => {
   const index = ts
     ? `import 'regenerator-runtime/runtime';
   import aws from 'aws-sdk';
+  import { eventType } from '../events/event.d';
 
   aws.config.update({ region: 'us-east-1' });
   
-  type inputTypes = {
-    test: string;
-  };
-  
-  export const handler = async (event: inputTypes) => {
-    return event;
+  export const handler = async ({ a, b }: eventType) => {
+    const result = a + b;
+    return result;
   };
   `
     : `import 'regenerator-runtime/runtime';
@@ -27,8 +25,9 @@ module.exports = async ({ ts } = {}) => {
 
 aws.config.update({ region: 'us-east-1' });
 
-export const handler = async (event) => {
-  return event;
+export const handler = async ({ a, b }) => {
+  const result = a + b;
+  return result;
 };
 `;
 

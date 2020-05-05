@@ -33,6 +33,7 @@ module.exports = async ({ ts } = {}) => {
     '.prettierignore',
     Buffer.from(`node_modules
 coverage
+lib
   `),
   );
 
@@ -56,6 +57,7 @@ coverage
     "import/core-modules": ["aws-sdk"]
   },
   "rules": {
+    'import/prefer-default-export': ['off'],
     "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "max-len": [

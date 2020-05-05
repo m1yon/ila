@@ -11,10 +11,12 @@ module.exports = async () => {
 
 ## Scripts
 
-- **start** - runs the Lambda using events/testEvent.js as input
-- **test** - runs the Jest test suite in watch mode
-- **coverage** - generate coverage report via Jest
-- **test:ci** - runs the Jest test suite
+- **start** - builds and runs the Lambda using events/testEvent.js as input
+- **build** - builds the production build via Babel
+- **check-types** - runs code through the TypeScript to check for any errors
+- **test** - checks types then runs the Jest test suite in watch mode
+- **coverage** - checks types then generates coverage report via Jest
+- **test:ci** - checks types then runs the Jest test suite
 
 ## Permissions Boundary and Roles
 
