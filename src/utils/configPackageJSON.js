@@ -16,7 +16,11 @@ module.exports = async ({ author, ts } = {}) => {
     ...packageJSON,
     author,
     scripts: {
-      start: `npm run build && lambda-local -l ./lib/index.js -h handler -e ./events/testEvent.js -t 60`,
+      start: `${
+        ts ? 'npx tsc && ' : ''
+      }npm run build && lambda-local -l ./lib/index.js -h handler -e ${
+        ts ? './dist/events/testEvent.js' : './events/testEvent.js'
+      } -t 60`,
       build: `babel ./src --out-dir lib --extensions '.js,.ts,.tsx'`,
       'check-types': 'npx tsc --noEmit',
       test: `${ts ? 'npm run check-types && ' : ''}jest --watchAll`,

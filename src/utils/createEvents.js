@@ -6,7 +6,17 @@ module.exports = async ({ ts } = {}) => {
   const spinner = reporter.activity();
   spinner.tick('Creating test events');
 
-  const testEvent = `module.exports = {
+  const testEvent = ts
+    ? `import { eventType } from '../events/event.d';
+
+const event: eventType = {
+  a: 2,
+  b: 2,
+};
+
+export = event;
+`
+    : `module.exports = {
   a: 2,
   b: 2,
 };
@@ -20,7 +30,7 @@ const event: eventType = {
   b: 2,
 };
   
-export default event;
+export = event;
 `
     : `module.exports = {
   a: 2,
@@ -38,7 +48,7 @@ export default event;
 
   // write new files
   await fs.mkdir('events').catch(() => {});
-  await fs.writeFile('events/testEvent.js', testEvent);
+  await fs.writeFile(`events/testEvent.${ts ? 'ts' : 'js'}`, testEvent);
   await fs.writeFile(`events/jestEvent.${ts ? 'ts' : 'js'}`, jestEvent);
   if (ts) await fs.writeFile('events/event.d.ts', eventDefinition);
 
