@@ -29,9 +29,9 @@ module.exports = async ({ ts } = {}) => {
     ts
       ? `preset: 'ts-jest',
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.js$': 'babel-jest',
   },
-  testMatch: ['**/__tests__/**/*.test.js'],`
+  testMatch: ['**/__tests__/**/*.test.(j|t)s'],`
       : ''
   }
 };
