@@ -31,7 +31,7 @@ module.exports = async ({ ts } = {}) => {
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
-  testMatch: ['**/__tests__/**/*.test.(j|t)s'],`
+  testMatch: ['<rootDir>/__tests__/**/*.test.(j|t)s'],`
       : ''
   }
 };
