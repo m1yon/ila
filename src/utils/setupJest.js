@@ -9,7 +9,7 @@ module.exports = async ({ ts } = {}) => {
   spinner.tick('Installing jest');
 
   // install jest package
-  await exec(ts ? 'npm i -D jest@25.5.4 ts-jest' : 'npm i -D jest@latest');
+  await exec(ts ? 'npm i -D jest@26.1.0 ts-jest@26.1.1' : 'npm i -D jest@latest');
 
   // prettier config
   await fs.writeFile(

@@ -11,8 +11,28 @@ module.exports = async () => {
 
   // add overrides
   const buildspecConfigured = buildspec
-    .replace('npm run test', 'npm run coverage')
-    .replace('rm -rf ./__tests__', 'npm run build');
+    .replace(
+      '- npm run test',
+      `- npm run coverage
+      - npm run build`,
+    )
+    .replace(
+      '- rm -rf ./__tests__',
+      `- rm -rf ./__tests__
+      - rm -rf ./events
+      - rm -rf ./dist
+      - rm -rf ./src
+      - rm -rf ./coverage
+      - rm .babelrc.json
+      - rm .eslintrc.js
+      - rm .gitignore
+      - rm .prettierignore
+      - rm .prettierrc.js
+      - rm jest.config.js
+      - rm README.md
+      - rm tsconfig.json`,
+    )
+    .replace('all unit tests', 'bloat');
 
   // write new file
   await fs.writeFile('buildspec.yml', buildspecConfigured);
