@@ -35,8 +35,8 @@ export const handler = async ({ a, b }) => {
   await fs.writeFile(`src/index.${ts ? 'ts' : 'js'}`, index);
 
   // remove boilerplate junk
-  await exec('rm -rf ./src/handlers');
-  await exec('rm -rf ./__tests__/*');
+  await exec('rimraf ./src/handlers');
+  await exec('rimraf ./__tests__/*');
 
   spinner.end();
   reporter.success(`index.${ts ? 'ts' : 'js'} created`);

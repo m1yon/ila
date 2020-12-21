@@ -17,12 +17,12 @@ module.exports = async () => {
       - npm run build`,
     )
     .replace(
-      '- rm -rf ./__tests__',
-      `- rm -rf ./__tests__
-      - rm -rf ./events
-      - rm -rf ./dist
-      - rm -rf ./src
-      - rm -rf ./coverage
+      '- rimraf ./__tests__',
+      `- rimraf ./__tests__
+      - rimraf ./events
+      - rimraf ./dist
+      - rimraf ./src
+      - rimraf ./coverage
       - rm .babelrc.json
       - rm .eslintrc.js
       - rm .gitignore
