@@ -17,20 +17,20 @@ module.exports = async () => {
       - npm run build`,
     )
     .replace(
-      '- rm -rf ./__tests__',
-      `- rm -rf ./__tests__
-      - rm -rf ./events
-      - rm -rf ./dist
-      - rm -rf ./src
-      - rm -rf ./coverage
-      - rm .babelrc.json
-      - rm .eslintrc.js
-      - rm .gitignore
-      - rm .prettierignore
-      - rm .prettierrc.js
-      - rm jest.config.js
-      - rm README.md
-      - rm tsconfig.json`,
+      '- rimraf ./__tests__',
+      `- rimraf ./__tests__
+      - rimraf ./events
+      - rimraf ./dist
+      - rimraf ./src
+      - rimraf ./coverage
+      rimraf .babelrc.json
+      rimraf .eslintrc.js
+      rimraf .gitignore
+      rimraf .prettierignore
+      rimraf .prettierrc.js
+      rimraf jest.config.js
+      rimraf README.md
+      rimraf tsconfig.json`,
     )
     .replace('all unit tests', 'bloat');
 
