@@ -17,7 +17,7 @@ module.exports = async () => {
       - npm run build`,
     )
     .replace(
-      '- rimraf ./__tests__',
+      '- rm -rf ./__tests__',
       `- rimraf ./__tests__
       - rimraf ./events
       - rimraf ./dist
