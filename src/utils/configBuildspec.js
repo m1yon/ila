@@ -23,14 +23,14 @@ module.exports = async () => {
       - rimraf ./dist
       - rimraf ./src
       - rimraf ./coverage
-      rimraf .babelrc.json
-      rimraf .eslintrc.js
-      rimraf .gitignore
-      rimraf .prettierignore
-      rimraf .prettierrc.js
-      rimraf jest.config.js
-      rimraf README.md
-      rimraf tsconfig.json`,
+      - rimraf .babelrc.json
+      - rimraf .eslintrc.js
+      - rimraf .gitignore
+      - rimraf .prettierignore
+      - rimraf .prettierrc.js
+      - rimraf jest.config.js
+      - rimraf README.md
+      - rimraf tsconfig.json`,
     )
     .replace('all unit tests', 'bloat');
 
