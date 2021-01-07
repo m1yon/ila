@@ -18,19 +18,19 @@ module.exports = async () => {
     )
     .replace(
       '- rm -rf ./__tests__',
-      `- rimraf ./__tests__
-      - rimraf ./events
-      - rimraf ./dist
-      - rimraf ./src
-      - rimraf ./coverage
-      - rimraf .babelrc.json
-      - rimraf .eslintrc.js
-      - rimraf .gitignore
-      - rimraf .prettierignore
-      - rimraf .prettierrc.js
-      - rimraf jest.config.js
-      - rimraf README.md
-      - rimraf tsconfig.json`,
+      `- npx rimraf ./__tests__
+      - npx rimraf ./events
+      - npx rimraf ./dist
+      - npx rimraf ./src
+      - npx rimraf ./coverage
+      - npx rimraf .babelrc.json
+      - npx rimraf .eslintrc.js
+      - npx rimraf .gitignore
+      - npx rimraf .prettierignore
+      - npx rimraf .prettierrc.js
+      - npx rimraf jest.config.js
+      - npx rimraf README.md
+      - npx rimraf tsconfig.json`,
     )
     .replace('all unit tests', 'bloat');
 
